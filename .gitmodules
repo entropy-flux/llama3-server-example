@@ -1,0 +1,3 @@
+[submodule "external/tannic-nn"]
+	path = external/tannic-nn
+	url = https://github.com/entropy-flux/Tannic-NN.git
