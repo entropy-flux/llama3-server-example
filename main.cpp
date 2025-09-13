@@ -5,23 +5,23 @@
 int main() {    
     nn::Parameters parameters; 
 
-    Settings settings{
-        .model_dimension=16,
-        .number_of_layers=3,
-        .number_of_q_heads=4,
-        .number_of_kv_heads=2,
-        .vocabulary_size=128,
+    Settings settings {
+        .model_dimension=2048,
+        .number_of_layers=16,
+        .number_of_q_heads=32,
+        .number_of_kv_heads=8,
+        .vocabulary_size=128256,
         .multiple_of = 256, 
         .norm_epsilon = 1e-5,
-        .rope_theta = 500000,
+        .rope_theta = 500000.0,
         .ffn_dimension_multiplier=1.5,
-        .batch_size_limit=4,
-        .sequence_length_limit=16
+        .batch_size_limit=8,
+        .sequence_length_limit=512
     };
     
     Transformer model(float32, settings); 
 
-    parameters.initialize("../dev-transformer"); 
+    parameters.initialize("../data/llama3-model"); 
     model.initialize(parameters);
      
     Server server(8080);
@@ -30,13 +30,14 @@ int main() {
         try {
             Tensor input = receive(server, socket); 
             int position; server.read(socket, &position, sizeof(int)); 
-            Tensor outs = repack(model(input, position));
+            std::cout << "Postion: " << position << std::endl;
+            Tensor outs = repack(model(input, position)); 
             send(server, socket, outs);
         } 
         
-        catch (const Exception& exception) {
+        catch (const std::exception& exception) {
             std::cerr << "Unexpected model error: " << exception.what() << "\n";
-            break;
+            continue;
         } 
     }     
 }

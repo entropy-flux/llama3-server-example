@@ -15,10 +15,6 @@
 
 namespace tannic {
 
-/*
-Simple posix server to develop new features.
-*/
-
 class Endpoint {
 public:
     Endpoint() {
@@ -143,7 +139,6 @@ public:
         while (total < nbytes) {
             ssize_t n = socket.receive(static_cast<char*>(buffer) + total, nbytes - total);
             if (n == 0) {
-                // graceful disconnect
                 return false;
             }
             if (n < 0) {
@@ -160,7 +155,6 @@ public:
         while (total < nbytes) {
             ssize_t n = socket.send(static_cast<const char*>(buffer) + total, nbytes - total);
             if (n == 0) {
-                // peer closed before we finished sending
                 return false;
             }
             if (n < 0) {

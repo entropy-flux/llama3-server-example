@@ -1,3 +1,6 @@
+// C++ version of Llama 3 (Meta LLaMA 3 Community License)
+// https://llama.meta.com/get-started/
+
 #include <cmath>
 #include <tannic.hpp>
 #include <tannic/filter.hpp>
@@ -44,7 +47,7 @@ Tensor split(Tensor sequence, int number_of_heads) {
     int sequence_length = sequence.size(1);
     int model_dimension = sequence.size(2);  
     sequence = sequence.view(batch_size, sequence_length, number_of_heads, model_dimension / number_of_heads);
-    return repack(sequence.transpose(1, 2));
+    return repack(sequence.transpose(1, 2)); // TODO: CREATE TESTS AND FIX REPACKED STUFF
 }
 
 Tensor merge(Tensor sequence) {  
@@ -73,7 +76,7 @@ Tensor embed_frequencies(Tensor sequence, Tensor frequencies) {
     int number_of_heads = sequence.size(1);
     int sequence_length = sequence.size(2);
     int heads_dimension = sequence.size(3);      
-    sequence = repack(sequence.view(batch_size, number_of_heads, sequence_length, heads_dimension / 2, 2));   
+    sequence = repack(sequence.view(batch_size, number_of_heads, sequence_length, heads_dimension / 2, 2)); // TODO: CREATE TESTS AND FIX REPACKED STUFF    
     sequence = complexify(sequence);  
     sequence = sequence * frequencies; 
     sequence = realify(sequence); 
@@ -150,17 +153,17 @@ struct Attention : nn::Module {
     {}
  
     void initialize(nn::Parameters& parameters) const {
-        q_projector.initialize("q_projector", parameters);
-        k_projector.initialize("k_projector", parameters);
-        v_projector.initialize("v_projector", parameters);
-        o_projector.initialize("o_projector", parameters);
+        q_projector.initialize("wq", parameters);
+        k_projector.initialize("wk", parameters);
+        v_projector.initialize("wv", parameters);
+        o_projector.initialize("wo", parameters);
     }
 
     void initialize(std::string const& name, nn::Parameters& parameters) const {
-        q_projector.initialize(name + ".q_projector", parameters);
-        k_projector.initialize(name + ".k_projector", parameters);
-        v_projector.initialize(name + ".v_projector", parameters);
-        o_projector.initialize(name + ".o_projector", parameters);
+        q_projector.initialize(name + ".wq", parameters);
+        k_projector.initialize(name + ".wk", parameters);
+        v_projector.initialize(name + ".wv", parameters);
+        o_projector.initialize(name + ".wo", parameters);
     } 
 
     Tensor forward(Tensor sequence, int position, Tensor frequencies) {  
@@ -209,9 +212,9 @@ struct FFN : nn::Module {
     }
 
     void initialize(std::string const& name, nn::Parameters& parameters) const {
-        input_layer.initialize(name + ".input_layer", parameters);
-        output_layer.initialize(name + ".output_layer", parameters);
-        gate_layer.initialize(name + ".gate_layer", parameters); 
+        input_layer.initialize(name + ".w1", parameters);
+        output_layer.initialize(name + ".w2", parameters);
+        gate_layer.initialize(name + ".w3", parameters); 
     }
 };
 
@@ -236,14 +239,14 @@ struct Decoder : nn::Module {
     void initialize(nn::Parameters& parameters) const {
         attention.initialize("attention", parameters);
         attention_norm.initialize("attention_norm", parameters);
-        ffn.initialize("ffn", parameters);
+        ffn.initialize("feed_forward", parameters);
         ffn_norm.initialize("ffn_norm", parameters);
     } 
 
     void initialize(std::string const& name, nn::Parameters& parameters) const {
         attention.initialize(name + ".attention", parameters);
         attention_norm.initialize(name + ".attention_norm", parameters);
-        ffn.initialize(name + ".ffn", parameters);
+        ffn.initialize(name + ".feed_forward", parameters);
         ffn_norm.initialize(name + ".ffn_norm", parameters);
     } 
 
@@ -286,13 +289,13 @@ struct Transformer : nn::Module {
 
     void initialize(nn::Parameters& parameters) const {
         size_t index = 0;
-        embeddings.initialize("embeddings", parameters);
+        embeddings.initialize("tok_embeddings", parameters);
         for(auto& decoder: decoders) {
             decoder.initialize("layers." + std::to_string(index), parameters);
             index++;
         } 
         norm.initialize("norm", parameters);
-        head.initialize("head", parameters);
+        head.initialize("output", parameters);
     } 
 
     Tensor forward(Tensor tokens, int position) { 
