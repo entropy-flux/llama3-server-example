@@ -1,7 +1,5 @@
 import json
-import os
-import sys
-import time
+import os 
 from pathlib import Path
 from typing import List, Optional, Tuple, TypedDict
 
@@ -11,7 +9,7 @@ import torch.nn.functional as F
 from pytannic.client import Client
 from pytannic.torch.tensors import serialize, deserialize
 
-from llama3.llama3 import Transformer, ModelArgs
+from llama3.llama3 import ModelArgs
 from llama3.llama3_tokenizer import ChatFormat, Dialog, Message, Tokenizer
 
 
@@ -91,10 +89,7 @@ class Llama:
         top_p: float = 0.9,
         logprobs: bool = False,
         echo: bool = False,
-    ) -> Tuple[List[List[int]], Optional[List[List[float]]]]:
-        """
-        Generate text sequences on 1 GPU or CPU.
-        """ 
+    ) -> Tuple[List[List[int]], Optional[List[List[float]]]]: 
         params = self.model.params
         bsz = len(prompt_tokens)
         assert bsz <= params.batch_size_limit, (bsz, params.batch_size_limit)
@@ -274,6 +269,7 @@ def sample_top_p(probs, p):
 
 from typing import List 
 import fire  
+
 #run this with:
 """
 python main.py \
@@ -287,7 +283,7 @@ python main.py \
 def main(
     ckpt_dir: str,
     tokenizer_path: str,
-    temperature: float = 0.6,
+    temperature: float = 0.8,
     top_p: float = 0.9,
     sequence_length_limit: int = 128,
     max_gen_len: int = 64,
@@ -309,7 +305,7 @@ def main(
     )
 
     prompts: List[str] = [  
-        """Saint Seiya is better than Dragon Ball because """
+        """Hola como estan? Espero que la """
     ]
     
     generator.text_completion(
