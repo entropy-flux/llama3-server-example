@@ -1,4 +1,4 @@
-# Example of text completion with Meta LLaMA 3
+# Example of a C++ LLaMA 3 server doing text completion
  
 ![Example Demo](assets/Example.gif)
 
