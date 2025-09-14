@@ -28,9 +28,10 @@ int main() {
     while (true) {
         Socket socket = server.accept();   
         try {
-            Tensor input = receive(server, socket); 
-            int position; server.read(socket, &position, sizeof(int)); 
-            std::cout << "Postion: " << position << std::endl;
+            Tensor input = receive(server, socket);
+            std::cout << "Received tensor of shape: " << input.shape() << " dtype=" << input.dtype() << std::endl; 
+            int position; server.read(socket, &position, sizeof(int));  
+            std::cout << "Position: " << position <<  std::endl; 
             Tensor outs = repack(model(input, position)); 
             send(server, socket, outs);
         } 

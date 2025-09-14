@@ -9,6 +9,10 @@
 
 using namespace tannic;
 
+// Note: repack operation is to make tensors contiguously, if you see a repack in the code
+// it's because Tannic library still have some bugs or non supported behaviors for non 
+// contiguous tensors. This will be fixed soon.
+
 struct Settings {
     size_t model_dimension;
     size_t number_of_layers;

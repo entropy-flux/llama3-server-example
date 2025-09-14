@@ -58,14 +58,9 @@ class Llama:
             device = "cuda" if torch.cuda.is_available() else "cpu"
 
         torch.manual_seed(seed)
-
-        start_time = time.time()
+ 
         checkpoints = sorted(Path(ckpt_dir).glob("*.pth"))
-        assert len(checkpoints) > 0, f"no checkpoint files found in {ckpt_dir}"
-
-        # ✅ Just load the first (or only) checkpoint
-        ckpt_path = checkpoints[0]
-        checkpoint = torch.load(ckpt_path, map_location="cpu")
+        assert len(checkpoints) > 0, f"no checkpoint files found in {ckpt_dir}" 
 
         with open(Path(ckpt_dir) / "params.json", "r") as f:
             params = json.loads(f.read())
@@ -77,15 +72,8 @@ class Llama:
         )
         tokenizer = Tokenizer(model_path=tokenizer_path)
         assert model_args.vocab_size == tokenizer.n_words
-
-        if device == "cuda":
-            if torch.cuda.is_bf16_supported():
-                torch.set_default_tensor_type(torch.cuda.BFloat16Tensor)
-            else:
-                torch.set_default_tensor_type(torch.cuda.HalfTensor)
-
-        model = Model(model_args) 
-        print(f"Loaded in {time.time() - start_time:.2f} seconds on {device}")
+  
+        model = Model(model_args)  
         return Llama(model, tokenizer, device)
 
     def __init__(self, model, tokenizer: Tokenizer, device: str):
@@ -128,8 +116,7 @@ class Llama:
         input_text_mask = tokens != pad_id
 
         stop_tokens = torch.tensor(list(self.tokenizer.stop_tokens), device=self.device)
-
-        print("Saint Seiya is better than Dragon Ball because ")
+ 
         for cur_pos in range(min_prompt_len, total_len):
             resquest = serialize(tokens[:, prev_pos:cur_pos])
             logits = None
@@ -208,6 +195,7 @@ class Llama:
             max_gen_len = self.model.params.sequence_length_limit - 1
 
         prompt_tokens = [self.tokenizer.encode(x, bos=True, eos=False) for x in prompts]
+        print(prompts[0])
         generation_tokens, generation_logprobs = self.generate(
             prompt_tokens=prompt_tokens,
             max_gen_len=max_gen_len,

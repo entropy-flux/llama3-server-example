@@ -94,6 +94,7 @@ CMakeFiles/llama3-server.dir/cmake_device_link.o: CMakeFiles/llama3-server.dir/m
 CMakeFiles/llama3-server.dir/cmake_device_link.o: CMakeFiles/llama3-server.dir/build.make
 CMakeFiles/llama3-server.dir/cmake_device_link.o: /home/hypnos/llama3-server-example/external/tannic-nn/build/libtannic-nn.a
 CMakeFiles/llama3-server.dir/cmake_device_link.o: /home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/build/libtannic.a
+CMakeFiles/llama3-server.dir/cmake_device_link.o: /usr/lib/x86_64-linux-gnu/libopenblas.so
 CMakeFiles/llama3-server.dir/cmake_device_link.o: /usr/local/cuda-12.9/targets/x86_64-linux/lib/libcudart.so
 CMakeFiles/llama3-server.dir/cmake_device_link.o: /usr/local/cuda/lib64/libcudadevrt.a
 CMakeFiles/llama3-server.dir/cmake_device_link.o: /usr/local/cuda/targets/x86_64-linux/lib/stubs/libcuda.so
@@ -118,6 +119,7 @@ llama3-server: CMakeFiles/llama3-server.dir/main.cpp.o
 llama3-server: CMakeFiles/llama3-server.dir/build.make
 llama3-server: /home/hypnos/llama3-server-example/external/tannic-nn/build/libtannic-nn.a
 llama3-server: /home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/build/libtannic.a
+llama3-server: /usr/lib/x86_64-linux-gnu/libopenblas.so
 llama3-server: /usr/local/cuda-12.9/targets/x86_64-linux/lib/libcudart.so
 llama3-server: /usr/local/cuda/lib64/libcudadevrt.a
 llama3-server: /usr/local/cuda/targets/x86_64-linux/lib/stubs/libcuda.so

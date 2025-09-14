@@ -437,7 +437,7 @@ CUDA_nvrtc_static_LIBRARY:FILEPATH=/usr/local/cuda-12.9/targets/x86_64-linux/lib
 CUDA_pcsamplingutil_LIBRARY:FILEPATH=/usr/local/cuda-12.9/targets/x86_64-linux/lib/libpcsamplingutil.so
 
 //Path to a library.
-OPENBLAS_LIB:FILEPATH=OPENBLAS_LIB-NOTFOUND
+OPENBLAS_LIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libopenblas.so
 
 //Value Computed by CMake
 llama3-server_BINARY_DIR:STATIC=/home/hypnos/llama3-server-example/build
