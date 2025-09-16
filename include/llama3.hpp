@@ -51,7 +51,7 @@ Tensor split(Tensor sequence, int number_of_heads) {
     int sequence_length = sequence.size(1);
     int model_dimension = sequence.size(2);  
     sequence = sequence.view(batch_size, sequence_length, number_of_heads, model_dimension / number_of_heads);
-    return repack(sequence.transpose(1, 2)); // TODO: CREATE TESTS AND FIX REPACKED STUFF
+    return sequence.transpose(1, 2);
 }
 
 Tensor merge(Tensor sequence) {  
@@ -80,7 +80,8 @@ Tensor embed_frequencies(Tensor sequence, Tensor frequencies) {
     int number_of_heads = sequence.size(1);
     int sequence_length = sequence.size(2);
     int heads_dimension = sequence.size(3);      
-    sequence = repack(sequence.view(batch_size, number_of_heads, sequence_length, heads_dimension / 2, 2)); // TODO: CREATE TESTS AND FIX REPACKED STUFF    
+    sequence = repack(sequence);
+    sequence = sequence.view(batch_size, number_of_heads, sequence_length, heads_dimension / 2, 2); // TODO: CREATE TESTS AND FIX REPACKED STUFF    
     sequence = complexify(sequence);  
     sequence = sequence * frequencies; 
     sequence = realify(sequence); 
@@ -123,8 +124,7 @@ struct Cache : nn::Module {
         int batch_size = sequence.size(0);
         int sequence_length = sequence.size(2); 
         buffer[{0, batch_size}][{position, position + sequence_length}] = sequence.transpose(1, 2);
-        sequence = transpose(buffer[{0, batch_size}][{0, position + sequence_length}], 1, 2); 
-        return repack(sequence);
+        return transpose(buffer[{0, batch_size}][{0, position + sequence_length}], 1, 2);  
     }
 };
 

@@ -37,6 +37,7 @@ def main(
         tokenizer_path=tokenizer_path,
         sequence_length_limit=sequence_length_limit,
         batch_size_limit=batch_size_limit,
+        device='cpu'
     )
 
     prompts: List[str] = [  

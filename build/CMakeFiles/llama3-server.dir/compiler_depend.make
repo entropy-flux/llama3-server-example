@@ -7,6 +7,7 @@ CMakeFiles/llama3-server.dir/main.cpp.o: /home/hypnos/llama3-server-example/main
   /home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/comparisons.hpp \
   /home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/complex.hpp \
   /home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/concepts.hpp \
+  /home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/context.hpp \
   /home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/exceptions.hpp \
   /home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/expressions.hpp \
   /home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/filter.hpp \
@@ -695,18 +696,6 @@ CMakeFiles/llama3-server.dir/main.cpp.o: /home/hypnos/llama3-server-example/main
 
 /usr/include/c++/14/limits:
 
-/usr/include/c++/14/bits/invoke.h:
-
-/usr/include/x86_64-linux-gnu/bits/confname.h:
-
-/usr/include/c++/14/bits/hashtable_policy.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
-
-/home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic.hpp:
-
-/usr/include/c++/14/backward/binders.h:
-
 /usr/include/x86_64-linux-gnu/bits/sockaddr.h:
 
 /usr/include/c++/14/bits/locale_facets_nonio.tcc:
@@ -728,8 +717,6 @@ CMakeFiles/llama3-server.dir/main.cpp.o: /home/hypnos/llama3-server-example/main
 /usr/include/c++/14/bits/shared_ptr_base.h:
 
 /usr/include/c++/14/tr1/beta_function.tcc:
-
-/usr/include/c++/14/bits/nested_exception.h:
 
 /usr/include/c++/14/bits/exception.h:
 
@@ -759,29 +746,11 @@ CMakeFiles/llama3-server.dir/main.cpp.o: /home/hypnos/llama3-server-example/main
 
 /usr/include/c++/14/bits/allocated_ptr.h:
 
-/usr/include/c++/14/bits/stl_construct.h:
+/usr/include/c++/14/bits/nested_exception.h:
 
-/usr/include/c++/14/bits/predefined_ops.h:
+/home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/context.hpp:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
-
-/home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/shape.hpp:
-
-/usr/include/asm-generic/errno.h:
-
-/usr/include/syscall.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
-
-/home/hypnos/llama3-server-example/external/tannic-nn/include/tannic-nn/embeddings.hpp:
-
-/usr/include/c++/14/bits/list.tcc:
-
-/home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/reductions.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
-
-/home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/traits.hpp:
+/usr/include/c++/14/bits/unicode.h:
 
 /usr/include/x86_64-linux-gnu/bits/environments.h:
 
@@ -799,25 +768,47 @@ CMakeFiles/llama3-server.dir/main.cpp.o: /home/hypnos/llama3-server-example/main
 
 /usr/include/c++/14/bits/atomic_wait.h:
 
-/usr/include/c++/14/bits/stl_heap.h:
+/usr/include/c++/14/bits/invoke.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
+/usr/include/x86_64-linux-gnu/bits/confname.h:
 
-/usr/include/c++/14/charconv:
+/usr/include/c++/14/bits/hashtable_policy.h:
 
-/usr/include/c++/14/bits/unique_ptr.h:
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
 
-/usr/include/c++/14/iterator:
+/home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic.hpp:
 
-/usr/include/c++/14/bits/node_handle.h:
+/usr/include/c++/14/bits/stl_construct.h:
 
-/usr/include/features.h:
+/usr/include/c++/14/bits/predefined_ops.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
+
+/home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/shape.hpp:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/syscall.h:
+
+/home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/reductions.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
+
+/home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/traits.hpp:
+
+/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
+
+/home/hypnos/llama3-server-example/external/tannic-nn/include/tannic-nn/embeddings.hpp:
+
+/usr/include/c++/14/bits/list.tcc:
+
+/usr/include/c++/14/backward/binders.h:
+
+/home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/indexing.hpp:
 
 /home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/buffer.hpp:
 
 /home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/concepts.hpp:
-
-/home/hypnos/llama3-server-example/external/tannic-nn/external/tannic/include/tannic/indexing.hpp:
 
 /usr/include/c++/14/bits/ranges_uninitialized.h:
 
@@ -885,6 +876,10 @@ CMakeFiles/llama3-server.dir/main.cpp.o: /home/hypnos/llama3-server-example/main
 
 /usr/include/unistd.h:
 
+/usr/include/x86_64-linux-gnu/asm/bitsperlong.h:
+
+/usr/include/c++/14/numeric:
+
 /usr/include/asm-generic/posix_types.h:
 
 /usr/include/c++/14/tr1/bessel_function.tcc:
@@ -947,6 +942,20 @@ CMakeFiles/llama3-server.dir/main.cpp.o: /home/hypnos/llama3-server-example/main
 
 /usr/include/c++/14/bits/basic_ios.h:
 
+/usr/include/c++/14/bits/stl_heap.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
+
+/usr/include/c++/14/charconv:
+
+/usr/include/c++/14/bits/unique_ptr.h:
+
+/usr/include/c++/14/iterator:
+
+/usr/include/c++/14/bits/node_handle.h:
+
+/usr/include/features.h:
+
 /usr/include/c++/14/bits/stl_iterator_base_types.h:
 
 /usr/include/x86_64-linux-gnu/asm/unistd.h:
@@ -988,8 +997,6 @@ CMakeFiles/llama3-server.dir/main.cpp.o: /home/hypnos/llama3-server-example/main
 /usr/include/c++/14/bits/string_view.tcc:
 
 /usr/include/c++/14/streambuf:
-
-/usr/include/c++/14/bits/unicode.h:
 
 /usr/include/c++/14/bits/unordered_map.h:
 
@@ -1158,10 +1165,6 @@ CMakeFiles/llama3-server.dir/main.cpp.o: /home/hypnos/llama3-server-example/main
 /usr/include/linux/errno.h:
 
 /usr/include/locale.h:
-
-/usr/include/c++/14/numeric:
-
-/usr/include/x86_64-linux-gnu/asm/bitsperlong.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 

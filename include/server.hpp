@@ -141,8 +141,7 @@ public:
             if (n == 0) {
                 return false;
             }
-            if (n < 0) {
-                // real error
+            if (n < 0) { 
                 throw std::runtime_error("Error while reading from socket");
             }
             total += n;
